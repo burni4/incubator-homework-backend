@@ -12,10 +12,10 @@ type videoType = {
     "title": string,
     "author": string,
     "canBeDownloaded": boolean,
-    "minAgeRestriction": number,
+    "minAgeRestriction": number | null,
     "createdAt": string,
     "publicationDate": string,
-    "availableResolutions": Resolutions[]
+    "availableResolutions": Resolutions[] | null
 }
 
 enum Resolutions { P144 = "P144", P240="P240", P360="P360", P480="P480", P720 = "P720", P1080= "P1080", P1440="P1440", P2160="P2160"}
@@ -75,15 +75,28 @@ ht_01_Router.post('/', (req: Request, res: Response) => {
         title: "",
         author: "",
         canBeDownloaded: false,
-        minAgeRestriction: 0,
+        minAgeRestriction: null,
         createdAt: createdDate.toISOString(),
         publicationDate: new Date(createdDate.setDate(createdDate.getDate() + 1)).toISOString(),
-        availableResolutions: []
+        availableResolutions: null
     };
 
     newVideo.title = body.title;
     newVideo.author = body.author;
     newVideo.availableResolutions = body.availableResolutions;
+
+    if (body.availableResolutions !== undefined){
+        newVideo.availableResolutions = body.availableResolutions;
+    }
+    if (body.canBeDownloaded !== undefined){
+        newVideo.canBeDownloaded = body.canBeDownloaded;
+    }
+    if (body.minAgeRestriction !== undefined){
+        newVideo.minAgeRestriction = body.minAgeRestriction;
+    }
+    if (body.publicationDate !== undefined){
+        newVideo.publicationDate = body.publicationDate;
+    }
 
     videos.push(newVideo);
 
