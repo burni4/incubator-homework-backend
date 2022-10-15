@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express"
 import bodyParser from 'body-parser'
-import {ht_01_Router} from "./h01/hometask_01_videos_router";
+import {ht_01_Router, videos} from "./h01/hometask_01_videos_router";
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -16,6 +16,11 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/test", (req: Request, res: Response) => {
     res.send('Test');
+})
+
+app.delete("/testing/all-data", (req: Request, res: Response) => {
+    videos.splice(0,videos.length)
+    res.status(204);
 })
 
 app.listen(port, () => {
