@@ -8,7 +8,7 @@ const parserMiddleware = bodyParser()
 
 app.use(parserMiddleware);
 
-app.use('/api/videos', ht_01_Router);
+app.use('/videos', ht_01_Router);
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello Homework from Artem Narchuk");
