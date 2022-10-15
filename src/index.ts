@@ -18,8 +18,8 @@ app.get("/test", (req: Request, res: Response) => {
     res.send('Test');
 })
 
-app.delete("/api/testing/all-data", (req: Request, res: Response) => {
-    videos.length = 0;
+app.delete("/testing/all-data", (req: Request, res: Response) => {
+    videos.length = 0
     res.status(204).send(videos);
 })
 
