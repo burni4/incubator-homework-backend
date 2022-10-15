@@ -87,7 +87,7 @@ ht_01_Router.put('/:id', (req: Request, res: Response) => {
         //video.availableResolutions = body.availableResolutions;
         //video.canBeDownloaded = body.canBeDownloaded;
         //video.minAgeRestriction = body.minAgeRestriction;
-        //video.publicationDate = new Date().toISOString();
+        //video.publicationDate = body.publicationDate;
 
         res.status(204).send(video);
     }else{
