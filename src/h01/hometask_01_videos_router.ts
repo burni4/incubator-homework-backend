@@ -168,7 +168,7 @@ function FieldsValidation(body: any): boolean{
         validationPassed = false;
     }
 
-    if (body.availableResolutions !== undefined && body.availableResolutions.length === 0){
+    if (body.availableResolutions !== undefined && (body.availableResolutions.length === 0 || !ResolutionsIsValid(body.availableResolutions))){
         AddMessage("availableResolutions", "inputModel [availableResolutions] has incorrect values");
         validationPassed = false;
     }
@@ -189,5 +189,19 @@ function FieldsValidation(body: any): boolean{
     }
 
     return validationPassed;
+
+}
+
+function ResolutionsIsValid(res: Resolutions[]): boolean{
+
+    let isValid = true;
+
+    for (let i = 0; i < res.length; i++){
+        if (!Resolutions[res[i]]){
+            isValid = false;
+            break;
+        }
+    }
+    return isValid;
 
 }
