@@ -102,12 +102,22 @@ ht_01_Router.put('/:id', (req: Request, res: Response) => {
 
         video.title = body.title;
         video.author = body.author;
-        //video.availableResolutions = body.availableResolutions;
-        //video.canBeDownloaded = body.canBeDownloaded;
-        //video.minAgeRestriction = body.minAgeRestriction;
-        //video.publicationDate = body.publicationDate;
+
+        if (body.availableResolutions !== undefined){
+            video.availableResolutions = body.availableResolutions;
+        }
+        if (body.canBeDownloaded !== undefined){
+            video.canBeDownloaded = body.canBeDownloaded;
+        }
+        if (body.minAgeRestriction !== undefined){
+            video.minAgeRestriction = body.minAgeRestriction;
+        }
+        if (body.publicationDate !== undefined){
+            video.publicationDate = body.publicationDate;
+        }
 
         res.status(204).send(video);
+
     }else{
         res.send(404);
     }
