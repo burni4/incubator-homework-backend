@@ -51,20 +51,23 @@ ht_01_Router.delete('/:id', (req: Request, res: Response) => {
 
 ht_01_Router.post('/', (req: Request, res: Response) => {
 
+    let body = req.body;
+    let createdDate = new Date();
+
     let newVideo: videoType = {
         id: between(0,10000),
         title: "",
         author: "",
         canBeDownloaded: false,
         minAgeRestriction: 0,
-        createdAt: new Date().toISOString(),
-        publicationDate: new Date().toISOString(),
+        createdAt: createdDate.toISOString(),
+        publicationDate: new Date(createdDate.setDate(createdDate.getDate() + 1)).toISOString(),
         availableResolutions: []
     };
 
-    newVideo.title = "";
-    newVideo.author = "";
-    newVideo.availableResolutions = [];
+    newVideo.title = body.title;
+    newVideo.author = body.author;
+    newVideo.availableResolutions = body.availableResolutions;
 
     videos.push(newVideo);
 
@@ -72,6 +75,26 @@ ht_01_Router.post('/', (req: Request, res: Response) => {
 
 })
 
+ht_01_Router.put('/:id', (req: Request, res: Response) => {
+
+    let video = videos.find(v => v.id === +req.params.id)
+
+    if (video){
+        let body = req.body;
+
+        video.title = body.title;
+        video.author = body.author;
+        //video.availableResolutions = body.availableResolutions;
+        //video.canBeDownloaded = body.canBeDownloaded;
+        //video.minAgeRestriction = body.minAgeRestriction;
+        //video.publicationDate = new Date().toISOString();
+
+        res.status(204).send(video);
+    }else{
+        res.send(404);
+    }
+
+})
 function between(min:number, max:number) {
     return Math.floor(
         Math.random() * (max - min) + min
