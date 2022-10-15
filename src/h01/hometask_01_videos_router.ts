@@ -2,7 +2,7 @@ import {Request, Response, Router} from "express";
 
 export  const ht_01_Router = Router({});
 
-export const videos: videoType[] = [];
+export let videos: videoType[] = [];
 
 const errorsMessages: errorsMessagesType = CreateErrorsMessages();
 // types +
