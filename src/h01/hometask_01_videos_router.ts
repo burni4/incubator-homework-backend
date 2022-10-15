@@ -54,7 +54,7 @@ ht_01_Router.delete('/:id', (req: Request, res: Response) => {
     res.send(404);
 })
 
-ht_01_Router.get("/testing/all-data", (req: Request, res: Response) => {
+ht_01_Router.delete("/testing/all-data", (req: Request, res: Response) => {
     videos.splice(0,videos.length)
     res.status(204);
 })
