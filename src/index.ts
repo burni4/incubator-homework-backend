@@ -18,10 +18,8 @@ app.get("/test", (req: Request, res: Response) => {
     res.send('Test');
 })
 
-app.delete("/testing/all-data", (req: Request, res: Response) => {
-   // videos.splice(0,videos.length)
-    videos = []
-    //videos.length = 0;
+app.delete("/api/testing/all-data", (req: Request, res: Response) => {
+    videos.length = 0;
     res.sendStatus(204);
 })
 
