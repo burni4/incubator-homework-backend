@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express"
 import bodyParser from 'body-parser'
-import {ht_01_Router} from "./h01/hometask_01_videos_router";
-import * as videoData from "./data/video-data";
+import {videos, ht_01_Router} from "./h01/hometask_01_videos_router";
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -16,7 +15,7 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 app.get("/test", (req: Request, res: Response) => {
-    res.send(videoData.videos);
+    res.send('Test');
 })
 
 app.listen(port, () => {
