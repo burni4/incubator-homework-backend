@@ -54,11 +54,6 @@ ht_01_Router.delete('/:id', (req: Request, res: Response) => {
     res.send(404);
 })
 
-ht_01_Router.delete("/testing/all-data", (req: Request, res: Response) => {
-    videos.length = 0;
-    res.status(204).send(videos);
-})
-
 ht_01_Router.post('/', (req: Request, res: Response) => {
 
     let body = req.body;
