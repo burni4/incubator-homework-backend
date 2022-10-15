@@ -19,7 +19,9 @@ app.get("/test", (req: Request, res: Response) => {
 })
 
 app.delete("/testing/all-data", (req: Request, res: Response) => {
-    videos.splice(0,videos.length)
+   // videos.splice(0,videos.length)
+    //videos = [];
+    videos.length = 0;
     res.sendStatus(204);
 })
 
