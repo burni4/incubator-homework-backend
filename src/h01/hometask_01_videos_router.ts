@@ -18,7 +18,7 @@ type videoType = {
     "availableResolutions": Resolutions[]
 }
 
-enum Resolutions { P144, P240, P360, P480, P720, P1080, P1440, P2160 }
+enum Resolutions { P144 = "P144", P240="P240", P360="P360", P480="P480", P720 = "P720", P1080= "P1080", P1440="P1440", P2160="P2160"}
 type messageType = {message: string, field: string}
 type errorsMessagesType = { errorsMessages: messageType[]}
 
@@ -168,7 +168,7 @@ function FieldsValidation(body: any): boolean{
         validationPassed = false;
     }
 
-    if (body.availableResolutions !== undefined && (body.availableResolutions.length === 0 || !ResolutionsIsValid(body.availableResolutions))){
+    if (body.availableResolutions !== undefined && !ResolutionsIsValid(body.availableResolutions)){
         AddMessage("availableResolutions", "inputModel [availableResolutions] has incorrect values");
         validationPassed = false;
     }
@@ -196,12 +196,17 @@ function ResolutionsIsValid(res: Resolutions[]): boolean{
 
     let isValid = true;
 
+    if(res.length === 0){
+        return false;
+    }
+
     for (let i = 0; i < res.length; i++){
-        if (!Resolutions[res[i]]){
+        if (!Object.values<string>(Resolutions).includes(res[i].toUpperCase())){
             isValid = false;
             break;
         }
     }
+
     return isValid;
 
 }
