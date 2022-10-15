@@ -20,7 +20,7 @@ app.get("/test", (req: Request, res: Response) => {
 
 app.delete("/testing/all-data", (req: Request, res: Response) => {
     videos.splice(0,videos.length)
-    res.status(204);
+    res.sendStatus(204);
 })
 
 app.listen(port, () => {
