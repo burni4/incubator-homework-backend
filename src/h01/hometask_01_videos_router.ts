@@ -133,7 +133,7 @@ function ClearErrorsMessages(): void{
 
 function CreateErrorsMessages(): errorsMessagesType{
 
-    return { errorsMessages: []};
+    return {errorsMessages:[]};
 
 }
 
@@ -144,17 +144,32 @@ function FieldsValidation(body: any): boolean{
     let validationPassed = true;
 
     if (body.title === undefined || typeof (body.title) !== 'string' || body.title.length > 40){
-        AddMessage("title", "inputModel [Title] has incorrect values");
+        AddMessage("title", "inputModel [title] has incorrect values");
         validationPassed = false;
     }
 
     if (body.author === undefined || typeof (body.author) !== 'string' || body.author.length > 20){
-        AddMessage("author", "inputModel [Author] has incorrect values");
+        AddMessage("author", "inputModel [author] has incorrect values");
         validationPassed = false;
     }
 
     if (body.availableResolutions !== undefined && body.availableResolutions.length === 0){
-        AddMessage("availableResolutions", "inputModel [AvailableResolutions] has incorrect values");
+        AddMessage("availableResolutions", "inputModel [availableResolutions] has incorrect values");
+        validationPassed = false;
+    }
+
+    if (body.canBeDownloaded !== undefined && typeof (body.canBeDownloaded) !== 'boolean'){
+        AddMessage("canBeDownloaded", "inputModel [canBeDownloaded] has incorrect values");
+        validationPassed = false;
+    }
+
+    if (body.minAgeRestriction !== undefined && (typeof (body.minAgeRestriction) !== 'number') || body.minAgeRestriction < 1 || body.minAgeRestriction > 18){
+        AddMessage("minAgeRestriction", "inputModel [minAgeRestriction] has incorrect values");
+        validationPassed = false;
+    }
+
+    if (body.publicationDate !== undefined && typeof (body.publicationDate) !== 'string'){
+        AddMessage("publicationDate", "inputModel [publicationDate] has incorrect values");
         validationPassed = false;
     }
 
