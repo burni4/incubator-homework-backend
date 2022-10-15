@@ -20,7 +20,7 @@ app.get("/test", (req: Request, res: Response) => {
 
 app.delete("/api/testing/all-data", (req: Request, res: Response) => {
     videos.length = 0;
-    res.sendStatus(204);
+    res.status(204).send(videos);
 })
 
 app.listen(port, () => {
