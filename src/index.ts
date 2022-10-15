@@ -14,7 +14,7 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Hello Homework from Artem Narchuk");
 })
 
-app.get("/ht_01/api/testing/all-data", (req: Request, res: Response) => {
+app.get("/testing/all-data", (req: Request, res: Response) => {
     videos.splice(0,videos.length)
     res.status(204);
 })
