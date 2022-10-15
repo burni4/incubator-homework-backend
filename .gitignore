@@ -1,6 +1,5 @@
 dist
 node_modules
-.gitignore
 /.idea/.gitignore
 /.idea/Homework.iml
 /.idea/modules.xml
